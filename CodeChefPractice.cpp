@@ -1,35 +1,80 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define show cout<<
-#define take cin>>
-//check who will reach the end first if distance and speeds are given 
-void check(int A,int B,int X,int Y){    
-    float t1,t2;
-    t1=(float)X/A;
-    t2=(float)Y/B;
-    if(t1>t2){
-        show "Chef";
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include<bits/stdc++.h>
+
+//int renameFile(char* newName,char* oldName)
+//{
+//    long long  mod  =10e9+7 ;
+//    int n = strlen(newName);
+//    int m = strlen(oldName);
+//    int dp[10000];
+//    int dpp[10000];
+//    for (int z=0;z<m+1;z++)
+//    {
+//        dp[z]=1;
+//    }
+//    for (int i=0;i<n;i++)
+//    {
+//        for (int z=0;z<m+1;z++)
+//        {
+//            dpp[z]=0;
+//        }
+//        for (int j=i;j<m+1;j++)
+//        {
+//            dpp[j+1] = dpp[j ];
+//            if (newName[i] == oldName[j])
+//                dpp[j+1] += dp[j ];
+//        }
+//        for (int z=0;z<m+1;z++)
+//        {
+//            dp[z]=dpp[z];
+//        }
+//    }
+//    return dpp[m]%mod;
+//}
+
+#define M 1000000007
+int renameFile(string newName,string oldName){
+    long long mod= 10e9+7 ;
+    long n= strlen(newName) ;
+    long o= strlen(oldName) ;
+    long dp[1000000] ;
+    long dpp[1000000] ;
+
+    for (int i = 0 ;i<o+1 ;i++){
+        dp[i]=1 ;
     }
-    else if(t1<t2){
-        show "Chefina";
+    for(int i =0 ;i<n;i++){
+        for(int j = 0 ;j< o+1 ;j++)
+        {
+            dpp[j]=0 ;
+        }
+        for(int j = i ;j<o+1 ;j++)
+        {
+            dpp[j+1]=dpp[j] ;
+            if (newName[i]==oldName[j])
+            {
+                dpp[j+1]+=dp[j] ;
+            }
+        }
+        for (int j = 0; j < o + 1; ++j) {
+            dp[j]=dpp[j];
+        }
+
     }
-    else{
-        show "Both";
-    }
+    return dp[o]%M ;
 }
-
-
 
 int main() {
-	// your code goes here
-    int test_case;
-    int a,b,x,y;
-    cin>>test_case;
-    for (int i=0;i<test_case;i++){
-        take a>>b>>x>>y;
-        check(a,b,x,y);
-        show endl;
-    }
-	return 0;
-}
+    //make a string cccc
+    //make a string bbbb
 
+    string newName = "bbbb";
+
+    string oldName = "cccc";
+
+    int result = renameFile(newName, oldName);
+    printf("%d",result);
+    return 0;
+}

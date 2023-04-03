@@ -4,38 +4,37 @@
 
 using namespace std;
 
-void solution(){
-    int m,n,p;
-    take m>>n>>p;
-    int a[m][n];
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++){
-            take a[i][j];
+void solution(int l_track,int n){
+    int laps=0,counter=0;
+    for (int i=0;i<n;i++){
+        int d_ran;
+        char c;
+        take d_ran >> c;
+        if (c=='C'){
+            counter = counter + d_ran;
+            if (counter>=l_track){
+                laps = laps + counter/l_track;
+                counter = counter%l_track;
+            }
         }
-    }
-    int difference=0;
-    int max_column[n];
-    for (int i = 0;i<n;i++){
-        
-        for(int j=0;j<m;j++){
-            max_column[i]=max(max_column[i],a[j][i]);
-        }
-    }
-
-    for (int i = 0;i<n;i++){
-        if (a[p-1][i]<max_column[i]){
-            difference+=max_column[i]-a[p-1][i];
-        }  
-    }
-    show difference<<endl;
-    
+        else {
+            counter=counter-d_ran;
+            if (counter <= -l_track){
+                laps = laps + abs(counter)/l_track;
+                counter = -1*(abs(counter)%l_track);
+            }
+        } 
+    } 
+    show laps<<endl;
 }
 
 int main(){
     int t;
     take t;
+    int l_track,n;
     for (int i=1;i<=t;i++){
         show "Case #"<<i<<": ";
-        solution();
+        take l_track>>n;
+        solution(l_track,n);
     }
 }

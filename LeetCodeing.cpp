@@ -4,24 +4,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int reverse(vector<int> &nums)
-{
-    //reverse the integer string in the vector and the push them back in the vector
-    int k=nums.size();
-    for(int i=0;i<k;i++)
-    {
-        string s=to_string(nums[i]);
-        reverse(s.begin(),s.end());
-        nums.push_back(stoi(s));
-    }
-    //find the distinct elements in the vector
-    //return total number of unique elements in the vector
-    
+void noboxes(float a,float b,float c){
+    int temp = ceil(b/c);
+    cout<<int (temp*a)<<endl;
 }
 
 
 int main(){
-    vector<int> nums = {1,13,10,12,31};
-    cout<<reverse(nums);
+    int test_case;
+    cin >> test_case;
+    float shelf,books,box_cap;
+    for(int i=0;i<test_case;i++)
+    {
+        cin >> shelf >> books >> box_cap;
+        noboxes(shelf,books,box_cap);
+    }
     return 0;
 }
