@@ -1,39 +1,16 @@
-def findLowestStartingStair(jumps):
+import math
 
-    #calculating sum of all jumps, not including first stair
+def getidealnums(low,high):
+    max_x=math.floor(math.log(high,3))
+    max_y=math.floor(math.log(high,5))
+    count = 0
+    for x in range(max_x+1):
+        for y in range(max_y+1):
+            num = 3*x * 5*y
+            if num >= low and num <= high:
+                count += 1
+    return count
+    
+    
 
-    startingStair = -1 + sum(jumps)
-
-    #if last jump is negative, adding last jump to startingStair
-
-    if jumps[len(jumps)-1] > 0:
-
-        startingStair -= jumps[len(jumps)-1]
-
-    #absolute value of the startingStair is the lowest starting stair
-
-    return abs(startingStair)
-
-
-
-if __name__ == "__main__":
-
-    #reading n value
-
-    n = int(input())
-
-    #an empty list for storing jumps
-
-    jumps = []
-
-    #iterating n times
-
-    for j in range(n):
-
-        #reading a jump and adding to jumps list
-
-        jump = int(input())
-
-        jumps.append(jump)
-
-    print(findLowestStartingStair(jumps))
+print (getidealnums(1,1))
